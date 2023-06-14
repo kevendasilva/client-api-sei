@@ -8,4 +8,6 @@ Rails.application.routes.draw do
     sessions: 'clients/sessions',
     registrations: 'clients/registrations'
   }
+
+  get '/current_client', to: 'current_client#index' 
 end
