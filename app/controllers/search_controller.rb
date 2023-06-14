@@ -1,6 +1,12 @@
 class SearchController < ApplicationController
   before_action :authenticate_client!
 
+  def movements
+    movements = MovementRead.where(client_id: current_client.id)
+  
+    render json: movements, status: :ok
+  end
+
   def parkings
     parkings = ParkingRead.all
 
