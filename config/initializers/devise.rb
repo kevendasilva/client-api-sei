@@ -296,6 +296,18 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
+  # Configuration for JWT
+  config.jwt do |jwt|
+    jwt.secret = Rails.application.credentials.fetch(:devise_jwt_secret)
+    jwt.dispatch_requests = [
+      ['POST', %r{^/login$}]
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/logout$}]
+    ]
+    jwt.expiration_time = 15.days.to_i
+  end
+
   # ==> Hotwire/Turbo configuration
   # When using Devise with Hotwire/Turbo, the http status for error responses
   # and some redirects must match the following. The default in Devise for existing
