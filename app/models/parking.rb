@@ -1,4 +1,4 @@
-class ParkingRead < ApplicationRecord
+class Parking < ApplicationRecord
   self.table_name = 'parkings'
 
   attribute :id

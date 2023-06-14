@@ -1,4 +1,4 @@
-class VacancyRead < ApplicationRecord
+class Vacancy < ApplicationRecord
   self.table_name = 'vacancies'
 
   attribute :id
