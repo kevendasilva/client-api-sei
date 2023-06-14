@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     registrations: 'clients/registrations'
   }
 
-  get '/current_client', to: 'current_client#index' 
+  get '/current_client', to: 'current_client#index'
+  resources :vacancy_reservations, except: [:index, :new, :edit, :update]
 end
