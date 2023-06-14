@@ -1,4 +1,6 @@
 class SearchController < ApplicationController
+  before_action :authenticate_client!
+
   def parkings
     parkings = ParkingRead.all
 
