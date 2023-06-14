@@ -5,7 +5,7 @@ Essa API foi desenvolvida para o projeto "Serviço para Estacionamentos Intelige
 # Estrutura do banco de dados
 
 <div align="center">
-    <img src="seiAPIs.svg" style="background: white;" />
+    <img src="seiAPIs.svg"/>
 </div>
 
 # Tabelas
