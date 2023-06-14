@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :clients
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  devise_for :clients, path: '', path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    registration: 'sign_up'
+  },
+  controllers: {
+    sessions: 'clients/sessions',
+    registrations: 'clients/registrations'
+  }
 end
