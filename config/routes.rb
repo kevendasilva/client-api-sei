@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   }
 
   get '/current_client', to: 'current_client#index'
+  resources :payment_methods
   get '/search/movements', to: 'search#movements'
   get '/search/parkings', to: 'search#parkings'
   get '/search/vacancies', to: 'search#vacancies'
