@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   }
 
   get '/current_client', to: 'current_client#index'
+  get '/search/parkings', to: 'search#parkings'
+  get '/search/vacancies', to: 'search#vacancies'
   resources :vacancy_reservations, except: [:index, :new, :edit, :update]
 end
