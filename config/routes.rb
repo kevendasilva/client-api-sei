@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get '/search/parkings', to: 'search#parkings'
   get '/search/vacancies', to: 'search#vacancies'
   resources :vacancy_reservations, except: [:index, :new, :edit, :update]
+  resources :vehicles
 end
