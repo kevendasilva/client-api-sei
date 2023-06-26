@@ -1,6 +1,4 @@
 class SearchController < ApplicationController
-  before_action :authenticate_client!
-
   def movements
     movements = Movement.where(client_id: current_client.id)
   

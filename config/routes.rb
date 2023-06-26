@@ -19,11 +19,12 @@ Rails.application.routes.draw do
     patch '/vehicles/:id', to: 'vehicles#update', as: :vehicle
     put '/vehicles/:id', to: 'vehicles#update', as: nil
     delete '/vehicles/:id', to: 'vehicles#destroy', as: nil
+    # Search
+    get '/search/movements', to: 'search#movements'
+    get '/search/parkings', to: 'search#parkings'
+    get '/search/vacancies', to: 'search#vacancies'
   end
 
   resources :payment_methods
-  get '/search/movements', to: 'search#movements'
-  get '/search/parkings', to: 'search#parkings'
-  get '/search/vacancies', to: 'search#vacancies'
   resources :vacancy_reservations, except: [:index, :new, :edit, :update]
 end
