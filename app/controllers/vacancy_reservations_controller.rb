@@ -1,8 +1,9 @@
 class VacancyReservationsController < ApplicationController
-  before_action :set_vacancy_reservation, only: %i[ show, destroy ]
-
   # GET /vacancy_reservations
   def show
+    client_id = current_client.id
+    @vacancy_reservation = VacancyReservation.find_by(client_id: client_id)
+
     if @vacancy_reservation
       render json: @vacancy_reservation
     else
@@ -23,16 +24,13 @@ class VacancyReservationsController < ApplicationController
 
   # DELETE /vacancy_reservations
   def destroy
+    client_id = current_client
+    @vacancy_reservation = VacancyReservation.find_by(client_id: client_id)
+
     @vacancy_reservation.destroy
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_vacancy_reservation
-    client_id = current_client.id
-    @vacancy_reservation = VacancyReservation.find_by(client_id: client_id)
-  end
 
   # Only allow a list of trusted parameters through.
   def vacancy_reservation_params
