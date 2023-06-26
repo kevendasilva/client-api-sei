@@ -6,8 +6,8 @@ class Client < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
-  has_many :payment_methods
-  has_many :movements
-  has_many :vehicles
-  has_one :vacancy_reservation
+  has_many :payment_methods, dependent: :destroy
+  has_many :movements, dependent: :destroy
+  has_many :vehicles, dependent: :destroy
+  has_one :vacancy_reservation, dependent: :destroy
 end
