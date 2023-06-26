@@ -1,11 +1,8 @@
 class VacancyReservationsController < ApplicationController
-  before_action :set_vacancy_reservation, only: %i[ show destroy ]
-  before_action :authenticate_client!
+  before_action :set_vacancy_reservation, only: %i[ show, destroy ]
 
-  # GET /vacancy_reservations/1
-  def show 
-    @vacancy_reservation = VacancyReservation.find_by(client_id: params[:client_id])
-
+  # GET /vacancy_reservations
+  def show
     if @vacancy_reservation
       render json: @vacancy_reservation
     else
@@ -24,7 +21,7 @@ class VacancyReservationsController < ApplicationController
     end
   end
 
-  # DELETE /vacancy_reservations/1
+  # DELETE /vacancy_reservations
   def destroy
     @vacancy_reservation.destroy
   end
@@ -33,7 +30,8 @@ class VacancyReservationsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_vacancy_reservation
-    @vacancy_reservation = VacancyReservation.find(params[:id])
+    client_id = current_client.id
+    @vacancy_reservation = VacancyReservation.find_by(client_id: client_id)
   end
 
   # Only allow a list of trusted parameters through.

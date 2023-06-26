@@ -29,6 +29,9 @@ Rails.application.routes.draw do
     patch '/payment_methods/:id', to: 'payment_methods#update', as: :payment_method
     put '/payment_methods/:id', to: 'payment_methods#update', as: nil
     delete '/payment_methods/:id', to: 'payment_methods#destroy', as: nil
+    # Vacancy Reservations
+    post '/vacancy_reservations', to: 'vacancy_reservations#create', as: :vacancy_reservations
+    get '/vacancy_reservations', to: 'vacancy_reservations#show', as: :vacancy_reservation
+    delete '/vacancy_reservations', to: 'vacancy_reservations#destroy', as: nil
   end
-  resources :vacancy_reservations, except: [:index, :new, :edit, :update]
 end
