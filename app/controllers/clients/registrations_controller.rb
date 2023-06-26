@@ -11,7 +11,7 @@ class Clients::RegistrationsController < Devise::RegistrationsController
     if resource.update(account_update_params)
       render json: {
         message: 'Successfully updated.',
-        data: ClientSerializer.new(resource).serializable_hash[:data][:attributes]
+        data: resource
       }, status: :ok
     else
       render json: {
@@ -26,7 +26,7 @@ class Clients::RegistrationsController < Devise::RegistrationsController
     if resource.persisted?
       render json: {
         message: 'Signed up sucessfully.',
-        data: ClientSerializer.new(resource).serializable_hash[:data][:attributes]
+        data: resource
       }
     else
       render json: {
