@@ -3,24 +3,24 @@
 class Clients::SessionsController < Devise::SessionsController
   respond_to :json
 
-  private
-  
-  def respond_with(resource, _opts = {})
+  def create
+    self.resource = warden.authenticate!(auth_options)
+    sign_in(resource_name, resource)
+    yield resource if block_given?
+
     render json: {
-      message: 'Logged in sucessfully.',
-      data: ClientSerializer.new(resource).serializable_hash[:data][:attributes]
+      message: 'Logged in successfully.'
     }, status: :ok
   end
 
+  private
+
   def respond_to_on_destroy
-    if current_client
-      render json: {
-        message: "Logged out successfully."
-      }, status: :ok
-    else
-      render json: {
-        message: "Couldn't find an active session."
-      }, status: :unauthorized
-    end
+    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+    yield if block_given?
+
+    render json: {
+      message: "Logged out successfully."
+    }, status: :ok
   end
 end
