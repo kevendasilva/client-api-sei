@@ -13,6 +13,12 @@ Rails.application.routes.draw do
 
   authenticate do
     get '/current_client', to: 'current_client#index'
+    # Vehicles
+    get '/vehicles', to: 'vehicles#index', as: :vehicles
+    post '/vehicles', to: 'vehicles#create', as: nil
+    patch '/vehicles/:id', to: 'vehicles#update', as: :vehicle
+    put '/vehicles/:id', to: 'vehicles#update', as: nil
+    delete '/vehicles/:id', to: 'vehicles#destroy', as: nil
   end
 
   resources :payment_methods
@@ -20,5 +26,4 @@ Rails.application.routes.draw do
   get '/search/parkings', to: 'search#parkings'
   get '/search/vacancies', to: 'search#vacancies'
   resources :vacancy_reservations, except: [:index, :new, :edit, :update]
-  resources :vehicles
 end

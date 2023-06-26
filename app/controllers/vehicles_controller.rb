@@ -1,17 +1,11 @@
 class VehiclesController < ApplicationController
   before_action :set_vehicle, only: %i[ show update destroy ]
-  before_action :authenticate_client!
 
   # GET /vehicles
   def index
     @vehicles = Vehicle.where(client_id: current_client.id)
 
     render json: @vehicles
-  end
-
-  # GET /vehicles/1
-  def show
-    render json: @vehicle
   end
 
   # POST /vehicles
