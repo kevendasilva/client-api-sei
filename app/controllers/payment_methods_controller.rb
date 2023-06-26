@@ -1,17 +1,11 @@
 class PaymentMethodsController < ApplicationController
   before_action :set_payment_method, only: %i[ show update destroy ]
-  before_action :authenticate_client!
 
   # GET /payment_methods
   def index
     @payment_methods = PaymentMethod.where(client_id: current_client.id)
 
     render json: @payment_methods
-  end
-
-  # GET /payment_methods/1
-  def show
-    render json: @payment_method
   end
 
   # POST /payment_methods

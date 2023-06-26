@@ -23,8 +23,12 @@ Rails.application.routes.draw do
     get '/search/movements', to: 'search#movements'
     get '/search/parkings', to: 'search#parkings'
     get '/search/vacancies', to: 'search#vacancies'
+    # Payment Methods
+    get '/payment_methods', to: 'payment_methods#index', as: :payment_methods
+    post '/payment_methods', to: 'payment_methods#create', as: nil
+    patch '/payment_methods/:id', to: 'payment_methods#update', as: :payment_method
+    put '/payment_methods/:id', to: 'payment_methods#update', as: nil
+    delete '/payment_methods/:id', to: 'payment_methods#destroy', as: nil
   end
-
-  resources :payment_methods
   resources :vacancy_reservations, except: [:index, :new, :edit, :update]
 end
