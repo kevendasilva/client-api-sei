@@ -7,8 +7,6 @@ gem "devise"
 
 gem "devise-jwt"
 
-gem "fast_jsonapi"
-
 gem "rack-cors"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
