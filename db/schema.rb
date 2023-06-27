@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_14_062334) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_25_145445) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_062334) do
     t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
   end
 
+  create_table "movements", force: :cascade do |t|
+    t.float "cost"
+    t.bigint "vehicle_id", null: false
+    t.bigint "client_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "entry"
+    t.datetime "exit"
+    t.index ["client_id"], name: "index_movements_on_client_id"
+    t.index ["vehicle_id"], name: "index_movements_on_vehicle_id"
+  end
+
   create_table "parkings", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -55,6 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_062334) do
     t.bigint "administrator_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "cost_per_hour"
     t.index ["administrator_id"], name: "index_parkings_on_administrator_id"
   end
 
@@ -96,6 +109,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_062334) do
     t.index ["client_id"], name: "index_vehicles_on_client_id"
   end
 
+  add_foreign_key "movements", "clients"
+  add_foreign_key "movements", "vehicles"
   add_foreign_key "parkings", "administrators"
   add_foreign_key "payment_methods", "clients"
   add_foreign_key "vacancies", "parkings"
